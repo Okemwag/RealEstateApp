@@ -19,7 +19,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("The first name must be set"))
         if not last_name:
             raise ValueError(_("The last name must be set"))
-        if not email:
+        if  email:
             email = self.normalize_email(email)
             self.email_validator(email)
         else:
@@ -33,7 +33,7 @@ class CustomUserManager(BaseUserManager):
             **extra_fields
         )
         
-        password = set_password(password)
+        user.set_password(password)
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
         user.save(using=self._db)
@@ -62,12 +62,7 @@ class CustomUserManager(BaseUserManager):
         
         
         user = self.create_user(
-            username=username,
-            first_name=first_name,
-            last_name=last_name,
-            email=email,
-            password=password,
-            **extra_fields
+            username,first_name,last_name,email,password,**extra_fields
         )
         
         user.save(using=self._db)

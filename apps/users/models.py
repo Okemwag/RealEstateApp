@@ -11,7 +11,7 @@ from .managers import CustomUserManager
 
 class User(AbstractUser, PermissionsMixin):
     pkid = models.BigAutoField(primary_key=True, editable=False)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    id = models.CharField(default=uuid.uuid4, editable=False, max_length=36)
     username = models.CharField(verbose_name=_('Username'),max_length=250,
                                 unique=True)
     first_name = models.CharField(verbose_name=_('First Name'),max_length=50)
