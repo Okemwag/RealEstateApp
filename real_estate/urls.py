@@ -5,6 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("secretsite/", admin.site.urls),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
+    #path(r'^auth/', include('djoser.urls')),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
